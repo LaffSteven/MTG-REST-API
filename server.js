@@ -43,7 +43,7 @@ app.use(cors())
 // Routes
 //___________________
 //GET Home Page
-app.get('/', (req, res) => {
+app.get('/index', (req, res) => {
     res.send("Hello, world!")
 });
 
