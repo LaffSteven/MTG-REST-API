@@ -23,7 +23,9 @@ const Card = require('../models/card.js')
 
 
 cardsRouter.get('/', (req, res) => {
-    res.send('Card Index Page')
+    Card.find({}, (err, foundCards) => {
+        res.json(foundCards)
+    })
 });
 
 module.exports = cardsRouter;
