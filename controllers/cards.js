@@ -3,22 +3,29 @@ const axios = require('axios');
 const cardsRouter = express.Router();
 const Card = require('../models/card.js')
 
-cardsRouter.get('/data/seed/import', (req, res) => {
-    console.log('test seed import');
-    axios.get('http://api.magicthegathering.io/v1/cards?page=1')
-        .then((response) => {
-            console.log(response.data);
-            // Card.insertMany(response.data.cards, (err, foundCards) => {
-            //     console.log(`Found ${response.data.cards.length} cards to import`);
-            //     console.log(`The collection now has ${Card.count()} cards`);
-            //     res.send(response.data.cards)
-            // });
-        });
-});
+
+// only call seed route when working on localhost (already used, please don't run again)
+// let pageIndex = 1;
+// cardsRouter.get('/data/seed/import', (req, res) => {
+//     res.send(`Imported page #${pageIndex}`)
+//     callSeed(pageIndex);
+//     pageIndex++
+// });
+//
+// const callSeed = (pageNum) => {
+//     axios.get(`http://api.magicthegathering.io/v1/cards?page=${pageNum}`)
+//         .then((response) => {
+//             Card.insertMany(response.data.cards, (err, foundCards) => {
+//                 console.log(`Imported Page #${pageNum}`);
+//             });
+//     });
+// }
 
 
 cardsRouter.get('/', (req, res) => {
-    res.send('Card Index Page')
+    Card.find({}, (err, foundCards) => {
+        res.json(foundCards)
+    })
 });
 
 module.exports = cardsRouter;
