@@ -38,6 +38,13 @@ db.on('disconnected', () => console.log('mongo disconnected'));
 app.use(express.json());
 app.use(cors())
 
+//___________________
+//Controllers
+//___________________
+const cardsController = require('./controllers/cards.js');
+const decksController = require('./controllers/decks.js');
+app.use('/cards', cardsController);
+app.use('/decks', decksController);
 
 //___________________
 // Routes
