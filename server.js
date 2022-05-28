@@ -38,19 +38,21 @@ db.on('disconnected', () => console.log('mongo disconnected'));
 app.use(express.json());
 app.use(cors())
 
+//___________________
+//Controllers
+//___________________
+const cardsController = require('./controllers/cards.js');
+const decksController = require('./controllers/decks.js');
+app.use('/cards', cardsController);
+app.use('/decks', decksController);
 
 //___________________
 // Routes
 //___________________
 //GET Home Page
 app.get('/', (req, res) => {
-    res.send("Hello, world!")
+    res.send(`DB Connected on port:${PORT}`)
 });
-
-app.get('/testing/db/connection-test', (req, res) => {
-    res.send(`DB Connected on ${PORT}`);
-});
-
 
 
 //___________________
