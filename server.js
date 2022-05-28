@@ -51,13 +51,8 @@ app.use('/decks', decksController);
 //___________________
 //GET Home Page
 app.get('/', (req, res) => {
-    res.send("Hello, world!")
+    res.send(`DB Connected on port:${PORT}`)
 });
-
-app.get('/testing/db/connection-test', (req, res) => {
-    res.send(`DB Connected on ${PORT}`);
-});
-
 
 
 //___________________
