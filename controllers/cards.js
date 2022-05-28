@@ -1,5 +1,6 @@
 const express = require('express');
 const axios = require('axios');
+const cors = require('cors')
 const cardsRouter = express.Router();
 const Card = require('../models/card.js')
 
