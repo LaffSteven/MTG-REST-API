@@ -47,6 +47,10 @@ app.get('/', (req, res) => {
     res.send("Hello, world!")
 });
 
+app.get('/testing/db/connection-test', (req, res) => {
+    res.send(`DB Connected on ${PORT}`);
+});
+
 
 
 //___________________
