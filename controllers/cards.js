@@ -25,8 +25,9 @@ const Card = require('../models/card.js')
 
 cardsRouter.get('/', (req, res) => {
     Card.find({}, (err, foundCards) => {
-        res.send(foundCards)
-    })
+        console.log(foundCards.length);
+        res.json(foundCards)
+    }).limit(5);
 });
 
 module.exports = cardsRouter;
