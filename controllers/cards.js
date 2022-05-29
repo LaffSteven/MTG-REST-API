@@ -24,10 +24,11 @@ const Card = require('../models/card.js')
 
 
 cardsRouter.get('/', (req, res) => {
-    Card.find({}, (err, foundCards) => {
-        console.log(foundCards.length);
-        res.json(foundCards)
-    }).limit(5);
+    // Card.find({}, (err, foundCards) => {
+    //     console.log(foundCards.length);
+    //     res.json(foundCards)
+    // }).limit(5);
+    res.send(["the", "cards", "will", "go", "here"])
 });
 
 module.exports = cardsRouter;
