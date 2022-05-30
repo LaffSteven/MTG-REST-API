@@ -61,7 +61,7 @@ const cardSchema = new mongoose.Schema({
         normal: String,
         large: String,
         png: String,
-        art_crop: String:,
+        art_crop: String,
         border_crop: String
     },
     mana_cost: String,
