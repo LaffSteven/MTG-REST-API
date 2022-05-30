@@ -1,7 +1,7 @@
 const express = require('express');
 const axios = require('axios');
 const cors = require('cors')
-const cardsRouter = express.Router();
+const router = express.Router();
 const Card = require('../models/card.js')
 
 
@@ -23,10 +23,10 @@ const Card = require('../models/card.js')
 // }
 
 
-cardsRouter.get('/', (req, res) => {
+router.get('/', (req, res) => {
     Card.find({}, (err, foundCards) => {
-        res.send(foundCards)
-    }).limit(5);
+        res.json(foundCards)
+    }).limit(2);
 });
 
-module.exports = cardsRouter;
+module.exports = router;
