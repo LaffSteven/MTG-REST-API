@@ -23,7 +23,7 @@ const callSeed = (pageNum) => {
 }
 
 
-router.get('https://magic-academy-api.herokuapp.com/', (req, res) => {
+router.get('/', (req, res) => {
     Card.find({}, (err, foundCards) => {
         res.json(foundCards)
     }).limit(10);
