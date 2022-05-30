@@ -52,7 +52,7 @@ app.use('/decks', decksController);
 //___________________
 //GET Home Page
 app.get('/', (req, res) => {
-    res.send(`DB Connected on port:${PORT}`)
+    res.send(PORT)
 });
 
 
