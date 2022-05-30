@@ -106,7 +106,7 @@ const cardSchema = new mongoose.Schema({
     story_spotlight: Boolean,
     edhrec_rank: Number,
     prices: {},
-    related_uris: {},
+    related_uris: {}
 });
 
 const Card = mongoose.model('Card', cardSchema);
