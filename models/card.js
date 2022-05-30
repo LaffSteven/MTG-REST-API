@@ -42,7 +42,7 @@ const cardSchema = new mongoose.Schema({
 
     object: String,
     id: String,
-    oracle_id: Sting,
+    oracle_id: String,
     multiverse_ids: [Number],
     mtgo_id: Number,
     mtgo_foil_id: Number,
