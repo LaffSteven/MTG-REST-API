@@ -4,24 +4,21 @@ const cors = require('cors')
 const router = express.Router();
 const Card = require('../models/card.js')
 
-
-// only call seed route when working on localhost (already used, please don't run again)
-let pageIndex = 1;
-router.get('/data/seed/import', (req, res) => {
-    res.send(`Imported page #${pageIndex}`)
-    callSeed(pageIndex);
-    pageIndex++
-});
-
-const callSeed = (pageNum) => {
-    axios.get(`http://api.magicthegathering.io/v1/cards?page=${pageNum}`)
-        .then((response) => {
-            Card.insertMany(response.data.cards, (err, foundCards) => {
-                console.log(`Imported Page #${pageNum}`);
-            });
-    });
-}
-
+//___________________
+// Import Seed Data
+//___________________
+// only call seed route when working on localhost
+// const seedData = require('../models/seed.json')
+// router.get('/data/seed/import', (req, res) => {
+//     console.log("Starting Data Upload");
+//         Card.insertMany(seedData, (err, foundCards) => {
+//             if (err) {
+//                 console.log(err.message);
+//             }
+//             console.log("Card Data Uploaded");
+//             res.send("Card Seed Data Uploaded")
+//         });
+// });
 
 router.get('/', (req, res) => {
     Card.find({}, (err, foundCards) => {
