@@ -36,8 +36,9 @@ db.on('disconnected', () => console.log('mongo disconnected'));
 //___________________
 //Middleware
 //___________________
+app.use(express.urlencoded({ extended: false }));
 app.use(express.json());
-app.use(cors())
+app.use(cors());
 
 //___________________
 //Controllers
@@ -52,7 +53,7 @@ app.use('/decks', decksController);
 //___________________
 //GET Home Page
 app.get('/', (req, res) => {
-    res.send(`DB Connected on port:${PORT}`)
+    res.send(PORT)
 });
 
 
