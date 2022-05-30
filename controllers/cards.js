@@ -24,9 +24,9 @@ const Card = require('../models/card.js')
 
 
 router.get('/', (req, res) => {
-    Card.find({}, (err, foundCards) => {
+    Card.find({name: "Bandage"}, (err, foundCards) => {
         res.json(foundCards)
-    }).limit(2);
+    });
 });
 
 module.exports = router;
