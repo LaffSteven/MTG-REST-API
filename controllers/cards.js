@@ -4,23 +4,21 @@ const cors = require('cors')
 const router = express.Router();
 const Card = require('../models/card.js')
 
-
-// only call seed route when working on localhost (already used, please don't run again)
-const jsonCardSeed = require('./card-seed.json');
-router.get('/data/seed/import', (req, res) => {
-    Card.insertMany(response.data.cards, (err, foundCards) => {
-        if (err) {
-            console.log(err.message);
-        }
-        console.log("Card Data Uploaded");
-        res.send("Card Seed Data Uploaded")
-    });
-});
-
-const callSeed = (pageNum) => {
-    Card.insertMany(response.data.cards, (err, foundCards) => {});
-}
-
+//___________________
+// Import Seed Data
+//___________________
+// only call seed route when working on localhost
+// const seedData = require('../models/seed.json')
+// router.get('/data/seed/import', (req, res) => {
+//     console.log("Starting Data Upload");
+//         Card.insertMany(seedData, (err, foundCards) => {
+//             if (err) {
+//                 console.log(err.message);
+//             }
+//             console.log("Card Data Uploaded");
+//             res.send("Card Seed Data Uploaded")
+//         });
+// });
 
 router.get('/', (req, res) => {
     Card.find({}, (err, foundCards) => {
