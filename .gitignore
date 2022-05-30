@@ -104,4 +104,4 @@ dist
 .tern-port
 
 # Seed Data
-models/card-seed.json
+#models/card-seed.json
