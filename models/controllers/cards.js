@@ -22,11 +22,21 @@ const callSeed = (pageNum) => {
     });
 }
 
+const cardDelete = (cardData) => {
+  axios.delete(`http://localhost:3000/cards/${cardData._id}`).then(() => {
+    axios.get('http://localhost:3000/cards').then((response) => {
+      setCardList(response.data)
+    })
+  })
+}
+
 
 router.get('/', (req, res) => {
     Card.find({}, (err, foundCards) => {
         res.json(foundCards)
     }).limit(10);
 });
+
+
 
 module.exports = router;
