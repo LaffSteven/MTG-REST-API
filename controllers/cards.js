@@ -26,4 +26,11 @@ router.get('/', (req, res) => {
     }).limit(10);
 });
 
+// serach by card name
+router.get('/:name', (req, res) => {
+    Card.find({name: name}, (err, foundCard) => {
+        res.json(foundCard);
+    })
+})
+
 module.exports = router;
