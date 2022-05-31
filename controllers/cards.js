@@ -27,8 +27,12 @@ router.get('/', (req, res) => {
 });
 
 // serach by card name
-router.get('/:name', (req, res) => {
-    Card.find({name: name}, (err, foundCard) => {
+router.get('/search', (req, res) => {
+    console.log(`Searching for: ${req.query.name}`);
+    Card.find({name: new RegExp('^'+req.query.name+'$', "i")}, (err, foundCard) => {
+        if (err) {
+            console.log(err.message);
+        }
         res.json(foundCard);
     })
 })
