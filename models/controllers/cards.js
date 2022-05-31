@@ -2,34 +2,23 @@ const express = require('express');
 const axios = require('axios');
 const cors = require('cors')
 const router = express.Router();
-const Card = require('../models/card.js')
+const Card = require('../card.js')
 
-
-// only call seed route when working on localhost (already used, please don't run again)
-let pageIndex = 1;
-router.get('/data/seed/import', (req, res) => {
-    res.send(`Imported page #${pageIndex}`)
-    callSeed(pageIndex);
-    pageIndex++
-});
-
-const callSeed = (pageNum) => {
-    axios.get(`http://api.magicthegathering.io/v1/cards?page=${pageNum}`)
-        .then((response) => {
-            Card.insertMany(response.data.cards, (err, foundCards) => {
-                console.log(`Imported Page #${pageNum}`);
-            });
-    });
-}
-
-const cardDelete = (cardData) => {
-  axios.delete(`http://localhost:3000/cards/${cardData._id}`).then(() => {
-    axios.get('http://localhost:3000/cards').then((response) => {
-      setCardList(response.data)
-    })
-  })
-}
-
+//___________________
+// Import Seed Data
+//___________________
+// only call seed route when working on localhost
+// const seedData = require('../models/seed.json')
+// router.get('/data/seed/import', (req, res) => {
+//     console.log("Starting Data Upload");
+//         Card.insertMany(seedData, (err, foundCards) => {
+//             if (err) {
+//                 console.log(err.message);
+//             }
+//             console.log("Card Data Uploaded");
+//             res.send("Card Seed Data Uploaded")
+//         });
+// });
 
 router.get('/', (req, res) => {
     Card.find({}, (err, foundCards) => {
@@ -37,6 +26,18 @@ router.get('/', (req, res) => {
     }).limit(10);
 });
 
+// serach by card name
+router.get('/:name', (req, res) => {
+    Card.find({name: name}, (err, foundCard) => {
+        res.json(foundCard);
+    })
+})
 
+router.delete('/cards/:id', (req, res) => {
+  console.log(req.params.id);
+  Card.findByIdAndRemove(req.params.id, (err, cardDelete) => {
+    res.json(cardDelete)
+  })
+})
 
 module.exports = router;
