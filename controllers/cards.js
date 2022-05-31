@@ -37,4 +37,11 @@ router.get('/search', (req, res) => {
     })
 })
 
+
+router.delete('/:id', (req, res) => {
+    Card.deleteOne({_id : req.params.id}, (err, deletedCard) => {
+        res.send(`Deleted ${deletedCard.name} with ID:${deletedCard._id}`)
+    })
+})
+
 module.exports = router;
