@@ -21,26 +21,44 @@ const Card = require('../card.js')
 // });
 
 router.get('/', (req, res) => {
-    Card.find({}, (err, foundCards) => {
-        res.json(foundCards)
-    }).limit(10);
+    if (req.query.skip) {
+        Card.find({layout: "normal"}, (err, foundCards) => {
+            res.json(foundCards)
+        }).limit(20).skip(Number(req.query.skip));
+    } else {
+        Card.find({layout: "normal"}, (err, foundCards) => {
+            res.json(foundCards)
+        }).limit(20);
+    }
 });
 
 // serach by card name
 router.get('/search', (req, res) => {
-    console.log(`Searching for: ${req.query.name}`);
     Card.find({name: {$regex: '^'+req.query.name, $options:'i'}}, (err, foundCards) => {
         if (err) {
             console.log(err.message);
         }
         res.json(foundCards);
-    })
-})
-
+    });
+});
 
 router.delete('/:id', (req, res) => {
     Card.deleteOne({_id : req.params.id}, (err, deletedCard) => {
         res.send(`Deleted ${deletedCard.name} with ID:${deletedCard._id}`)
+    });
+});
+
+router.post('/', (req, res) => {
+    Card.create(req.body, (err, newCard) => {
+        if (err) {
+            console.log(err.message);
+        }
+    });
+});
+
+router.get('/:id', (req, res) => {
+    Card.findById(req.params.id, (err, foundCard) => {
+        res.json(foundCard);
     })
 })
 
