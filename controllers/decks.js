@@ -15,6 +15,7 @@ router.post('/', (req, res) => {
             console.log(err.message);
         }
         console.log(`Created new deck: ${createdDeck.name}`);
+        res.json(createdDeck)
     })
 })
 
