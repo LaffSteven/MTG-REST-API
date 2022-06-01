@@ -22,11 +22,11 @@ const Card = require('../models/card.js')
 
 router.get('/', (req, res) => {
     if (req.query.skip) {
-        Card.find({}, (err, foundCards) => {
+        Card.find({layout: "normal"}, (err, foundCards) => {
             res.json(foundCards)
         }).limit(20).skip(Number(req.query.skip));
     } else {
-        Card.find({}, (err, foundCards) => {
+        Card.find({layout: "normal"}, (err, foundCards) => {
             res.json(foundCards)
         }).limit(20);
     }
