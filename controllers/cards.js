@@ -2,7 +2,7 @@ const express = require('express');
 const axios = require('axios');
 const cors = require('cors')
 const router = express.Router();
-const Card = require('../card.js')
+const Card = require('../models/card.js')
 
 //___________________
 // Import Seed Data
@@ -60,13 +60,6 @@ router.get('/:id', (req, res) => {
     Card.findById(req.params.id, (err, foundCard) => {
         res.json(foundCard);
     })
-})
-
-router.delete('/cards/:id', (req, res) => {
-  console.log(req.params.id);
-  Card.findByIdAndRemove(req.params.id, (err, cardDelete) => {
-    res.json(cardDelete)
-  })
 })
 
 module.exports = router;

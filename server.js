@@ -43,10 +43,10 @@ app.use(cors());
 //___________________
 //Controllers
 //___________________
-const cardsController = require('./models/controllers/cards.js');
-// const decksController = require('./models/controllers/decks.js');
+const cardsController = require('./controllers/cards.js');
+const decksController = require('./controllers/decks.js');
 app.use('/cards', cardsController);
-// app.use('/decks', decksController);
+app.use('/decks', decksController);
 
 //___________________
 // Routes
@@ -55,12 +55,6 @@ app.use('/cards', cardsController);
 app.get('/', (req, res) => {
     res.send(PORT)
 });
-
-app.delete('/cards/:id', (req, res) => {
-  Card.findByIdAndRemove(req.params.id, (err, cardDelete) => {
-    res.json(cardDelete)
-  })
-})
 
 
 //___________________

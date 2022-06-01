@@ -1,7 +1,7 @@
 const express = require('express');
 const router = express.Router();
 const cors = require('cors')
-const Deck = require('../deck.js')
+const Deck = require('../models/deck.js')
 
 router.get('/', (req, res) => {
     Deck.find({}, (err, foundDecks) => {
