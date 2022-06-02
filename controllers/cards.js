@@ -64,11 +64,13 @@ router.get('/:id', (req, res) => {
 })
 
 router.put('/:id', (req, res) => {
-    Card.findByIdAndUpdate(req.params._id, req.body, {new:true}, (err, foundCard) => {
+    // console.log(req.body);
+    Card.findByIdAndUpdate(req.params.id, req.body, {new:true}, (err, editedCard) => {
         if (err) {
             console.log(err.message);
         }
-        res.json(foundCard);
+        res.json(editedCard);
+        // console.log(editedCard);
     });
 });
 
