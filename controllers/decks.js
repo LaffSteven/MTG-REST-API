@@ -9,6 +9,12 @@ router.get('/', (req, res) => {
     })
 })
 
+router.delete('/:id', (req, res) => {
+    Deck.deleteOne({_id : req.params.id}, (err, deletedDeck) => {
+        res.send(`Deleted ${deletedDeck.name} with ID:${deletedDeck._id}`)
+    });
+});
+
 router.post('/', (req, res) => {
     Deck.create(req.body, (err, createdDeck) => {
         if (err) {
