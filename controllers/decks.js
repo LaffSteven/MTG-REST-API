@@ -25,4 +25,10 @@ router.post('/', (req, res) => {
     })
 })
 
+router.put('/:id', (req, res) => {
+  Deck.findByIdAndUpdate(req.params.id, req.body, {new:true}, (err, updatedDeck) => {
+    res.json(updatedDeck)
+  })
+})
+
 module.exports = router;
