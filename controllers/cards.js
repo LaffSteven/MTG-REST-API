@@ -64,7 +64,7 @@ router.get('/:id', (req, res) => {
 })
 
 router.put('/:id', (req, res) => {
-    Card.findByIdAndUpdate(req.params._id, (err, foundCard) => {
+    Card.findByIdAndUpdate(req.params._id, req.body, {new:true}, (err, foundCard) => {
         if (err) {
             console.log(err.message);
         }
