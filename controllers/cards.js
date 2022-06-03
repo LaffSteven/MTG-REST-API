@@ -53,7 +53,7 @@ router.post('/', (req, res) => {
         if (err) {
             console.log(err.message);
         }
-        res.json(newCard)
+        res.json(newCard);
     });
 });
 
@@ -62,5 +62,16 @@ router.get('/:id', (req, res) => {
         res.json(foundCard);
     })
 })
+
+router.put('/:id', (req, res) => {
+    // console.log(req.body);
+    Card.findByIdAndUpdate(req.params.id, req.body, {new:true}, (err, editedCard) => {
+        if (err) {
+            console.log(err.message);
+        }
+        res.json(editedCard);
+        // console.log(editedCard);
+    });
+});
 
 module.exports = router;
