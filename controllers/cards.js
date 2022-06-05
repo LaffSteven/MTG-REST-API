@@ -34,7 +34,7 @@ router.get('/', (req, res) => {
 
 // serach by card name
 router.get('/search', (req, res) => {
-    Card.find({name: {$regex: '^'+req.query.name, $options:'i'}}, {layout: "normal"}, (err, foundCards) => {
+    Card.find({{name: {$regex: '^'+req.query.name, $options:'i'}}, {layout: "normal"}}, (err, foundCards) => {
         if (err) {
             console.log(err.message);
         }
