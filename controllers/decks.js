@@ -9,6 +9,12 @@ router.get('/', (req, res) => {
     })
 })
 
+router.delete('/:id', (req, res) => {
+    Deck.deleteOne({_id : req.params.id}, (err, deletedDeck) => {
+        res.send(`Deleted ${deletedDeck.name} with ID:${deletedDeck._id}`)
+    });
+});
+
 router.post('/', (req, res) => {
     Deck.create(req.body, (err, createdDeck) => {
         if (err) {
@@ -17,6 +23,12 @@ router.post('/', (req, res) => {
         console.log(`Created new deck: ${createdDeck.name}`);
         res.json(createdDeck)
     })
+})
+
+router.put('/:id', (req, res) => {
+  Deck.findByIdAndUpdate(req.params.id, req.body, {new:true}, (err, updatedDeck) => {
+    res.json(updatedDeck)
+  })
 })
 
 module.exports = router;

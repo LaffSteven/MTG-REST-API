@@ -5,8 +5,7 @@ const deckSchema = new mongoose.Schema({
     cardList: [
         {
             card_id: String,
-            card_name: String,
-            quantity: Number
+            card_name: String
         }
     ]
 })
