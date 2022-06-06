@@ -24,11 +24,11 @@ router.get('/', (req, res) => {
     if (req.query.skip) {
         Card.find({layout: "normal"}, (err, foundCards) => {
             res.json(foundCards)
-        }).limit(20).skip(Number(req.query.skip));
+        }).limit(30).skip(Number(req.query.skip));
     } else {
         Card.find({layout: "normal"}, (err, foundCards) => {
             res.json(foundCards)
-        }).limit(20);
+        }).limit(30);
     }
 });
 
